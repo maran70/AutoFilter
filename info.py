@@ -30,7 +30,7 @@ USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', True))
 
 PICS = (environ.get('PICS', 'https://graph.org/file/ce9b67142ca63044cf4a3-350fb0cc3f36a48c27.jpg https://graph.org/file/b93580fa98d782f57e040-88394479e60c470e03.jpg https://graph.org/file/a14aed5aadd49d35ad5c6-71ec48eb07e8c56ef6.jpg https://graph.org/file/87ef8cbcd54ad4201d052-3d3ddde5b0a6b060cf.jpg https://graph.org/file/59a3a03f88321d56650e7-428ea57354b567f430.jpg https://graph.org/file/21ab152aa3988b3e90711-80ee0104e413ad7cc6.jpg https://graph.org/file/93478305ca84966f556ba-c952f2deae98bcd53a.jpg https://graph.org/file/09b405f12fa9c429c2f71-10c2feddfc5d1d38b3.jpg')).split()  # Sample pic
 NOR_IMG = environ.get("NOR_IMG", "https://envs.sh/Wdj.jpg")
-MELCOW_VID = environ.get("MELCOW_VID", "https://envs.sh/Wdj.jpg")
+MELCOW_VID = environ.get("MELCOW_VID", "https://image2url.com/r2/default/videos/1770915103762-0ef483bf-22bf-4b1f-bf5d-377f0b828976.mp4")
 SPELL_IMG = environ.get("SPELL_IMG", "https://envs.sh/Wdj.jpg")
 SUBSCRIPTION = (environ.get('SUBSCRIPTION', 'https://envs.sh/Wdj.jpg'))
 FSUB_PICS = (environ.get('FSUB_PICS', 'https://envs.sh/Wdj.jpg')).split()  # Fsub pic
