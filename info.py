@@ -183,6 +183,7 @@ SESSION_NAME = str(environ.get('SESSION_NAME', 'codeflix'))
 MULTI_CLIENT = False
 NAME = str(environ.get('name', 'Deendayal'))
 PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))
+ON_HEROKU = False
 
 # ============================
 # URL Setup (VPS)
