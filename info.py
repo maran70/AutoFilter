@@ -170,12 +170,12 @@ STREAM_MODE = is_enabled('STREAM_MODE', True)
 NO_PORT = is_enabled('NO_PORT', False)
 HAS_SSL = is_enabled('HAS_SSL', False)
 
-PORT = int(environ.get("PORT", "8080"))
+PORT = int(environ.get("PORT", "8070"))
 
 # IMPORTANT: IP string ஆக இருக்கணும்
 FQDN = str(getenv("FQDN", "13.63.25.98"))
 
-BIND_ADDRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
+BIND_ADDRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '13.63.25.98'))
 
 SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '60'))
 WORKERS = int(environ.get('WORKERS', '4'))
