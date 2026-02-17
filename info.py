@@ -153,38 +153,48 @@ LANGUAGES = ["malayalam", "", "tamil", "", "english", "", "hindi", "", "telugu",
 QUALITIES = ["360P", "", "480P", "", "720P", "", "1080P", "", "1440P", "", "2160P", ""]
 SEASONS = ["season 1" , "season 2" , "season 3" , "season 4", "season 5" , "season 6" , "season 7" , "season 8" , "season 9" , "season 10"]
 
+from os import environ, getenv
+
+# ============================
+# Boolean Fix Function
+# ============================
+def is_enabled(value, default):
+    data = environ.get(value, str(default))
+    return data.lower() in ["true", "yes", "1", "enable", "y"]
+
 # ============================
 # Server & Web Configuration
 # ============================
 
-STREAM_MODE = bool(environ.get('STREAM_MODE', True)) # Set Stream mode True or False
+STREAM_MODE = is_enabled('STREAM_MODE', True)
+NO_PORT = is_enabled('NO_PORT', False)
+HAS_SSL = is_enabled('HAS_SSL', False)
 
-NO_PORT = bool(environ.get('NO_PORT', False))
-APP_NAME = None
-if 'DYNO' in environ:
-    ON_HEROKU = True
-    APP_NAME = environ.get('APP_NAME')
-else:
-    ON_HEROKU = False
-BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
-FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN') else APP_NAME+'.herokuapp.com'
-URL = "https://{}/".format(FQDN) if ON_HEROKU or NO_PORT else "https://{}/".format(FQDN, PORT)
+PORT = int(environ.get("PORT", "8080"))
+
+# IMPORTANT: IP string ஆக இருக்கணும்
+FQDN = str(getenv("FQDN", "13.63.25.98"))
+
+BIND_ADDRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
+
 SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '60'))
 WORKERS = int(environ.get('WORKERS', '4'))
 SESSION_NAME = str(environ.get('SESSION_NAME', 'codeflix'))
 MULTI_CLIENT = False
-name = str(environ.get('name', 'Deendayal'))
-PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
-if 'DYNO' in environ:
-    ON_HEROKU = True
-    APP_NAME = str(getenv('APP_NAME'))
-else:
-    ON_HEROKU = False
-HAS_SSL = bool(getenv('HAS_SSL', True))
+NAME = str(environ.get('name', 'Deendayal'))
+PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))
+
+# ============================
+# URL Setup (VPS)
+# ============================
+
 if HAS_SSL:
-    URL = "https://{}/".format(FQDN)
+    URL = f"https://{FQDN}/"
 else:
-    URL = "http://{}/".format(FQDN)
+    if NO_PORT:
+        URL = f"http://{FQDN}/"
+    else:
+        URL = f"http://{FQDN}:{PORT}/"
 
 # ============================
 # Reactions Configuration
